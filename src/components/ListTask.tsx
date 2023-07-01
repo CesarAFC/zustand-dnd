@@ -5,7 +5,6 @@ const ListTask = () => {
 
     const {tasksStore} = useTaskStore();
 
-
     if(!tasksStore.length) return <h3>Add your task!</h3>
 
 

@@ -1,6 +1,7 @@
 import { toast } from "react-hot-toast";
 import { useTaskStore } from "../store/tasks"
 import { Task } from "../types/taskTypes"
+import { useDrag } from 'react-dnd';
 
 interface SingleTskProps {
   task: Task
@@ -13,8 +14,20 @@ const SingleTask = ({task}: SingleTskProps) => {
     deleteTask(task.id)
     toast('Task deleted', {icon: '💀'})
   }
+
+  const [{isDragging}, drag] = useDrag(() => ({
+    type: 'task',
+    item: {id: task.id},
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging()
+    })
+  }));
+
+  isDragging && console.log('Task', isDragging, task)
+
+
   return (
-    <div className={`relative p-4 mt-8 shadow-md rounded-md cursor-grab`}>
+    <div ref={drag} className={`relative p-4 mt-8 shadow-md rounded-md cursor-grab ${isDragging ? "opacity-25" : "opacity-100"}`}>
       <h1>{task.name}</h1>
       <button
         onClick={handleDelete}
