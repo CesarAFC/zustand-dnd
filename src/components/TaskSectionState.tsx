@@ -29,7 +29,7 @@ const TaskHeader = ({header, count}: TaskHeaderProps) => {
   }
 
   return (
-    <div className={`${headerStyle[header]} flex items-center h-12 pl-4 rounded-md uppercase text-sm text-white`}>
+    <div className={`${headerStyle[header]} flex items-center h-12 pl-4 mb-4 shadow-md rounded-md uppercase text-sm text-white duration-500 hover:opacity-50`}>
         {header}<div className="ml-2 bg-white w-5 h-5 text-black rounded-full text-center">{count}</div>
     </div>
   )
@@ -60,13 +60,17 @@ const TaskSectionState = ({status}: TaskSecionProps) => {
   }));
 
   return (
-    <div ref={drop} className={`w-64 rounded-md p-2 ${isOver ? "bg-slate-200" : "" }`}>
-        <TaskHeader header={status} count={tasksStore.length} />
-      {
-        filterTodosByStatus(status).map( (task) => (
-          <SingleTask key={task.id} task={task} />
-        ))
-      }
+    <div ref={drop} className={`w-72 rounded-md p-2 ${isOver ? "bg-slate-200" : "" }`}>
+        <TaskHeader header={status} count={filterTodosByStatus(status).length} />
+
+        <div className="h-96 overflow-scroll">
+          {
+            filterTodosByStatus(status).map( (task) => (
+              <SingleTask key={task.id} task={task} />
+            ))
+          }
+        </div>
+
     </div>
   )
 }

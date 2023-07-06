@@ -35,8 +35,6 @@ export const useTaskStore = create(
 
                 return {tasksStore: updatedTasks}
               }
-                
-                
               //   ({
               //   tasksStore: state.tasksStore.map( task => 
               //       task.id === id ? {...task, status: newStatus } : task

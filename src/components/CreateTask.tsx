@@ -47,7 +47,7 @@ const CreateTask = () => {
             value={task.name}
             onChange={handleTask}
             />
-        <button className="bg-cyan-500 rounded-md px-4 h-12 text-white" type="submit">Create</button>
+        <button className="bg-cyan-500 rounded-md px-4 h-12 text-white duration-500 hover:bg-cyan-700" type="submit">Create</button>
     </form>
   )
 }
